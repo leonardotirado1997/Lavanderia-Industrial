@@ -1,0 +1,27 @@
+# Diretórios gerados
+qrcodes/*
+!qrcodes/.gitkeep
+
+# Configurações locais (se necessário)
+# config/config.local.php
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Composer (se usado)
+vendor/
+

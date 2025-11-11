@@ -1,0 +1,38 @@
+# Configurações do Apache para o sistema LuvaSul
+
+# Habilitar rewrite engine (se necessário)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+</IfModule>
+
+# Proteger arquivos de configuração
+<FilesMatch "^(config\.php|config\.local\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Configurações de segurança
+<IfModule mod_headers.c>
+    # Prevenir clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Prevenir MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Habilitar XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Configurações PHP (se permitido)
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
+
+# Páginas de erro personalizadas (opcional)
+# ErrorDocument 404 /404.php
+# ErrorDocument 500 /500.php
+

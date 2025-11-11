@@ -1,0 +1,143 @@
+/* Estilos Customizados - Tema Industrial LuvaSul */
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-bg: #f8f9fa;
+    --dark-text: #212529;
+}
+
+body {
+    background-color: var(--light-bg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+    color: white;
+    font-weight: bold;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.stat-card .stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-card .stat-label {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn {
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.qr-code-container {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.qr-code-container img {
+    max-width: 300px;
+    border: 2px solid var(--primary-color);
+    padding: 10px;
+    background: white;
+}
+
+.alert {
+    border-radius: 5px;
+    border: none;
+}
+
+.table {
+    background: white;
+}
+
+.table thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.badge {
+    padding: 0.5em 0.75em;
+    font-size: 0.875rem;
+}
+
+.page-title {
+    color: var(--dark-text);
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--dark-text);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .stat-card .stat-number {
+        font-size: 2rem;
+    }
+    
+    .qr-code-container img {
+        max-width: 200px;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+

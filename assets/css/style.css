@@ -141,3 +141,188 @@ body {
     animation: fadeIn 0.5s ease-in;
 }
 
+/* Estilos para Página Sobre */
+.about-stats {
+    transition: transform 0.3s;
+}
+
+.about-stats:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para Página de Avaliação */
+.star-rating {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.star-icon {
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.star-icon:hover {
+    transform: scale(1.2);
+}
+
+.star-icon.bi-star-fill {
+    color: #ffc107 !important;
+}
+
+.rating-card {
+    transition: all 0.3s;
+}
+
+.rating-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Estilos para Página de Contato */
+.team-container {
+    background: var(--light-bg);
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+}
+
+.team-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    margin: 0 auto 1.5rem;
+    display: block;
+    background: var(--light-bg);
+}
+
+.team-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.qr-code-wrapper {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.qr-code-wrapper img {
+    max-width: 200px;
+    width: 100%;
+    border: 3px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 10px;
+    background: white;
+}
+
+.contact-btn {
+    margin-top: 1rem;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.contact-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+    background: #0056b3;
+    color: white;
+}
+
+.page-header {
+    text-align: center;
+    color: var(--dark-text);
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+/* Estilos para Página de Sugestões */
+.suggestion-form {
+    max-width: 800px;
+}
+
+.form-text {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+}
+
+/* Animações adicionais */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in-up {
+    animation: slideInUp 0.6s ease-out;
+}
+
+/* Responsividade adicional */
+@media (max-width: 768px) {
+    .team-photo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .team-name {
+        font-size: 1.2rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .qr-code-wrapper img {
+        max-width: 150px;
+    }
+    
+    .team-container {
+        padding: 1rem 0;
+    }
+}
+

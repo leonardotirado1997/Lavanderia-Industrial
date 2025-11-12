@@ -63,6 +63,26 @@ $base_path = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) ? '../' : '';
                             <i class="bi bi-file-earmark-text"></i> Relatórios
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'sobre.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/sobre.php">
+                            <i class="bi bi-info-circle"></i> Sobre
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'avaliacao.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/avaliacao.php">
+                            <i class="bi bi-star"></i> Avaliação
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'contato.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/contato.php">
+                            <i class="bi bi-people"></i> Contato
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'sugestoes.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/sugestoes.php">
+                            <i class="bi bi-lightbulb"></i> Sugestões
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

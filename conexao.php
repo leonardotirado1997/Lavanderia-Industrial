@@ -43,6 +43,28 @@ function inicializarDB() {
     
     $conn->query($sql);
     
+    // Criar tabela avaliacoes se não existir
+    $sql = "CREATE TABLE IF NOT EXISTS avaliacoes (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
+        estrelas INT NOT NULL,
+        comentario TEXT,
+        data_avaliacao DATETIME DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    
+    $conn->query($sql);
+    
+    // Criar tabela sugestoes se não existir
+    $sql = "CREATE TABLE IF NOT EXISTS sugestoes (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        mensagem TEXT NOT NULL,
+        data_envio DATETIME DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    
+    $conn->query($sql);
+    
     return $conn;
 }
 ?>

@@ -21,14 +21,14 @@ $equipe = [
     ],
     [
         'nome' => 'Lucas Alves',
-        'funcao' => 'Product Owner (PO)',
+        'funcao' => 'Product Owner (PO) e Gerente de negócio',
         'email' => 'lucas.alves@luvasul.com',
         'linkedin' => 'https://www.linkedin.com/in/lucas-alves-a02514178/',
         'foto' => 'lucas_alves.jpeg'
     ],
     [
         'nome' => 'José Vitor',
-        'funcao' => 'DevOps Engineer',
+        'funcao' => 'DevOps Engineer e Big Data',
         'email' => 'jose.vitor@luvasul.com',
         'linkedin' => 'https://www.linkedin.com/in/jos%C3%A9-vitor-ferreira-dos-santos/',
         'foto' => 'jose_vitor.jpeg'

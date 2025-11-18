@@ -63,25 +63,37 @@ $base_path = (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) ? '../' : '';
                             <i class="bi bi-file-earmark-text"></i> Relatórios
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'sobre.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/sobre.php">
-                            <i class="bi bi-info-circle"></i> Sobre
+                    <li class="nav-item dropdown">
+                        <?php
+                        $currentPage = basename($_SERVER['PHP_SELF']);
+                        $dropdownPages = ['sobre.php', 'avaliacao.php', 'contato.php', 'sugestoes.php'];
+                        $isDropdownActive = in_array($currentPage, $dropdownPages);
+                        ?>
+                        <a class="nav-link dropdown-toggle <?php echo $isDropdownActive ? 'active' : ''; ?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i> Mais
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'avaliacao.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/avaliacao.php">
-                            <i class="bi bi-star"></i> Avaliação
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'contato.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/contato.php">
-                            <i class="bi bi-people"></i> Contato
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'sugestoes.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/sugestoes.php">
-                            <i class="bi bi-lightbulb"></i> Sugestões
-                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item <?php echo $currentPage == 'sobre.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/sobre.php">
+                                    <i class="bi bi-info-circle"></i> Sobre
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item <?php echo $currentPage == 'avaliacao.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/avaliacao.php">
+                                    <i class="bi bi-star"></i> Avaliação
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item <?php echo $currentPage == 'contato.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/contato.php">
+                                    <i class="bi bi-people"></i> Contato
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item <?php echo $currentPage == 'sugestoes.php' ? 'active' : ''; ?>" href="<?php echo $base_path; ?>pages/sugestoes.php">
+                                    <i class="bi bi-lightbulb"></i> Sugestões
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

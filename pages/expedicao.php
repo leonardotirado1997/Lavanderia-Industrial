@@ -46,7 +46,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }
                         $stmt2->close();
                     } else if ($pedido['status'] == 'Pronto para Expedição') {
-                        // Concluir pedido
+                        $mensagem = 'Este pedido já está pronto para expedição. Use o botão "Concluir Pedido" para finalizar.';
+                        $tipo_mensagem = 'info';
+                    } else if ($pedido['status'] == 'Concluído') {
+                        $mensagem = 'Este pedido já foi concluído e expedido.';
+                        $tipo_mensagem = 'info';
+                        $mostrar_comprovante = true;
+                    } else {
+                        $mensagem = 'Este pedido não está pronto para expedição. Status atual: ' . $pedido['status'];
+                        $tipo_mensagem = 'warning';
+                    }
+                } else if ($acao == 'concluir') {
+                    // Concluir pedido
+                    if ($pedido['status'] == 'Pronto para Expedição') {
                         $stmt3 = $conn->prepare("UPDATE pedidos SET status = 'Concluído' WHERE id = ?");
                         $stmt3->bind_param("i", $pedido_id);
                         
@@ -65,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $tipo_mensagem = 'info';
                         $mostrar_comprovante = true;
                     } else {
-                        $mensagem = 'Este pedido não está pronto para expedição. Status atual: ' . $pedido['status'];
+                        $mensagem = 'Este pedido precisa estar "Pronto para Expedição" antes de ser concluído. Status atual: ' . $pedido['status'];
                         $tipo_mensagem = 'warning';
                     }
                 }
@@ -172,6 +184,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><?php echo date('d/m/Y H:i', strtotime($pedido['data_cadastro'])); ?></td>
                     </tr>
                 </table>
+                
+                <?php if ($pedido['status'] == 'Pronto para Expedição'): ?>
+                <div class="mt-3">
+                    <form method="POST" action="">
+                        <input type="hidden" name="codigo_qr" value="PEDIDO-<?php echo $pedido['id']; ?>">
+                        <input type="hidden" name="acao" value="concluir">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-check-circle-fill"></i> Concluir Pedido
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

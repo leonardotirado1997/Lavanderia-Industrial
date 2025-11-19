@@ -1,4 +1,65 @@
 <?php
+// Verificar se é exportação CSV ANTES de incluir o header
+if (isset($_GET['exportar']) && $_GET['exportar'] == 'csv') {
+    // Inicializar conexão para exportação
+    require_once __DIR__ . '/../conexao.php';
+    $conn = inicializarDB();
+    
+    $filtro_status = $_GET['status'] ?? 'todos';
+    $pedidos = [];
+    
+    // Buscar pedidos com filtro
+    $sql = "SELECT * FROM pedidos WHERE 1=1";
+    
+    if ($filtro_status != 'todos') {
+        $sql .= " AND status = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $filtro_status);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } else {
+        $result = $conn->query($sql);
+    }
+    
+    while ($row = $result->fetch_assoc()) {
+        $pedidos[] = $row;
+    }
+    
+    if (isset($stmt)) {
+        $stmt->close();
+    }
+    
+    // Enviar headers antes de qualquer output
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=relatorio_pedidos_' . date('Y-m-d') . '.csv');
+    
+    $output = fopen('php://output', 'w');
+    
+    // BOM para UTF-8 (Excel)
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    
+    // Cabeçalho (adicionando parâmetro $escape para evitar depreciação)
+    fputcsv($output, ['ID', 'Cliente', 'Tipo de Material', 'Quantidade', 'Status', 'Observação', 'Data de Cadastro'], ';', '"', '\\');
+    
+    // Dados (adicionando parâmetro $escape para evitar depreciação)
+    foreach ($pedidos as $pedido) {
+        fputcsv($output, [
+            $pedido['id'],
+            $pedido['cliente'],
+            $pedido['tipo_material'],
+            $pedido['quantidade'],
+            $pedido['status'],
+            $pedido['observacao'],
+            date('d/m/Y H:i', strtotime($pedido['data_cadastro']))
+        ], ';', '"', '\\');
+    }
+    
+    fclose($output);
+    $conn->close();
+    exit;
+}
+
+// Se não for exportação, continuar normalmente
 $pageTitle = "Relatórios";
 require_once __DIR__ . '/../includes/header.php';
 
@@ -24,36 +85,6 @@ while ($row = $result->fetch_assoc()) {
 
 if (isset($stmt)) {
     $stmt->close();
-}
-
-// Exportar para CSV
-if (isset($_GET['exportar']) && $_GET['exportar'] == 'csv') {
-    header('Content-Type: text/csv; charset=utf-8');
-    header('Content-Disposition: attachment; filename=relatorio_pedidos_' . date('Y-m-d') . '.csv');
-    
-    $output = fopen('php://output', 'w');
-    
-    // BOM para UTF-8 (Excel)
-    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    
-    // Cabeçalho
-    fputcsv($output, ['ID', 'Cliente', 'Tipo de Material', 'Quantidade', 'Status', 'Observação', 'Data de Cadastro'], ';');
-    
-    // Dados
-    foreach ($pedidos as $pedido) {
-        fputcsv($output, [
-            $pedido['id'],
-            $pedido['cliente'],
-            $pedido['tipo_material'],
-            $pedido['quantidade'],
-            $pedido['status'],
-            $pedido['observacao'],
-            date('d/m/Y H:i', strtotime($pedido['data_cadastro']))
-        ], ';');
-    }
-    
-    fclose($output);
-    exit;
 }
 ?>
 
